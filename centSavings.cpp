@@ -4,6 +4,13 @@
 
 using namespace std;
 
+
+// Goal: You're splitting a row of items into consecutive chunks (using at most d dividers) so that the total of 
+// the rounded chunk prices is as small as possible. To do that, you build up from the smallest case (the first 
+// item, which just costs its own rounded price) by trying every spot where the last chunk could start and adding 
+// its rounded price to the already-solved cost of everything before it, keeping the smallest.
+
+
 int main () {
     // Initializes variables, reads number of items and dividers
     int n, d;
