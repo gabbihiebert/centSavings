@@ -42,18 +42,25 @@ int main () {
         fill(curr.begin(), curr.end(), INF);
         curr[0] = 0;
 
-        // 
+        // For each item i, calculate the minimum cost to form a group ending at i
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
+                // Check if the previous state is valid, it cannot be < INF
                 if (prev[j] < INF) {
+                    // Calculate the cost of forming a group from item j + 1 to item i
+                    // Cost is the rounded price of the last group, with the rounding logic using 5 and 10
                     int cost = ((prefix[i] - prefix[j] + 5) / 10) * 10;
+                    // This is the recursive relationship for the dynamic programming solution.
+                    // The total is the best cost for the first j items using at most k - 1 dividers
                     curr[i] = min(curr[i], prev[j] + cost);
                 }
             }
         }
+        // Copies the finished layer into previous to continue
         prev = curr;
     }
 
+    // Outputs the minimum cost to group all items with at most d dividers
     cout << prev[n] << endl;
     return 0;
 }
